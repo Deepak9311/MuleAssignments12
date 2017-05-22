@@ -1,0 +1,42 @@
+#%RAML 0.8
+#baseUri: https://mocksvc.mulesoft.com/mocks/b6123ddb-2a77-46f4-b1b2-32183bc96f9f
+baseUri: https://mocksvc.mulesoft.com/mocks/7aeb7510-b7b1-45f5-9af9-aab653e34738
+title: American Flights
+version: 1.0
+
+/flights:
+  get:
+     queryParameters:
+      code:
+     responses: 
+       200:
+        body: 
+            application/json:
+              example: |
+                [{"ID":1, "code": "ER38sd","price": 400, "departureDate": "2016/03/20", "origin": "MUA", "destination": "SFO", "emptySeats": 0, "plane": {"type": "Boeing 737", "totalSeats": 150}}, {"ID":2,"code": "ER45if", "price": 345.99, "departureDate": "2016/02/11", "origin": "MUA", "destination": "LAX", "emptySeats": 52, "plane": {"type": "Boeing 777", "totalSeats": 300}}]
+              
+  post:
+    body: 
+      application/json:
+        example: |
+            {"code": "ER38sd","price": 400, "departureDate": "2016/03/20", "origin": "MUA", "destination": "SFO", "emptySeats": 0, "plane": {"type": "Boeing 737", "totalSeats":150} }
+    responses: 
+        201:
+          body: 
+            application/json:
+              example: |
+                {"message": "Flight added (but not really)"}
+
+
+  
+  /{id}:
+   get:
+    responses: 
+      200:
+        body: 
+          application/json:
+            example: |
+              {"ID":1, "code": "ER38sd","price": 400, "departureDate": "2016/03/20", "origin": "MUA", "destination": "SFO", "emptySeats": 0, "plane": {"type": "Boeing 737", "totalSeats": 150}}
+
+
+
